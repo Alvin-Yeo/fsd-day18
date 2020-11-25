@@ -1,0 +1,28 @@
+<main>
+    <div class="container small-container">
+        <div class="row mt-5">
+            <div class="col">
+                <p class="lead text-center">Saved Search Item</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <ul class="list-group">
+                    <li 
+                        *ngFor="let search of searchList"
+                        [routerLink]="['/search', search.genre, search.title ]"
+                        class="list-group-item text-capitalize">
+                        {{ search.title }} ({{ search.genre }})
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <button class="btn btn-primary" [routerLink]="['/search']">
+                    New Search
+                </button>
+            </div>
+        </div>
+    </div>
+</main>

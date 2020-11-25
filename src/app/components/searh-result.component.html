@@ -1,0 +1,24 @@
+<main>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <p class="lead text-capitalize">Search Result: {{ title }} ({{ genre }})</p>
+                <small>* Data provided by <a href="https://jikan.moe/" target="_blank">Jikan API</a> & <a href="https://myanimelist.net/" target="_blank">MyAnimeList</a>.</small>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 mb-5" *ngFor="let r of results">
+                <div class="card">
+                    <img src="{{ r.image_url }}" class="card-img-top" alt="{{ r.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ r.title }}</h5>
+                        <p class="card-text">{{ r.synopsis.slice(0, 80).concat('...') }}</p>
+                        <a href="{{ r.url }}" target="_blank" class="btn btn-primary">More info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

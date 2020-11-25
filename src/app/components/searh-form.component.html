@@ -1,0 +1,34 @@
+<main>
+    <div class="container small-container">
+        <div class="row mt-5">
+            <div class="col">
+                <p class="lead">Search</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <form [formGroup]="searchForm">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input formControlName="title" type="text" id="title" name="titile" class="form-control mt-2" placeholder="Enter a title...">
+                    </div>
+                    <div class="form-group">
+                        <p>Genre</p>
+                        <div class="fomr-check form-check-inline">
+                            <input formControlName="genre" type="radio" name="genre" id="genre-anime" value="anime" class="form-check-input">
+                            <label for="genre-anime" class="form-check-label">Anime</label>
+                        </div>
+                        <div class="fomr-check form-check-inline">
+                            <input formControlName="genre" type="radio" name="genre" id="genre-manga" value="manga" class="form-check-input">
+                            <label for="genre-manga" class="form-check-label">Manga</label>
+                        </div>
+                    </div>
+                    <div class="form-group mt-4">
+                        <button class="btn btn-primary" (click)="saveSearchCriteria()" [disabled]="!searchForm.valid">Save</button>
+                        <button class="btn btn-primary float-right" (click)="goSearch()" [disabled]="!searchForm.valid">Go</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
