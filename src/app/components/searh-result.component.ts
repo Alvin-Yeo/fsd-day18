@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgNavigatorShareService } from 'ng-navigator-share';
 import { AnimeHttpService } from '../anime-http.service';
 
 @Component({
@@ -12,14 +13,19 @@ export class SearhResultComponent implements OnInit {
   title: string;
   genre: string;
 
-  results = []
+  results = [];
+
+  canShare = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private http: AnimeHttpService
+    private http: AnimeHttpService,
+    private webShare: NgNavigatorShareService
   ) { }
 
   ngOnInit(): void {
+    this.canShare = this.webShare.canShare();
+
     this.title = this.activatedRoute.snapshot.params['title'];
     this.genre = this.activatedRoute.snapshot.params['genre'];
 
@@ -28,5 +34,15 @@ export class SearhResultComponent implements OnInit {
         this.results = response.results;
         // console.log(this.results);
        });
+  }
+
+  shareThis(index: number) {
+    const r = this.results[index];
+    this.webShare.share({
+      title: r.title,
+      text: r.synopsis,
+      url: r.url
+    })
+    .catch(e => console.error('Webshare Error: ', e));
   }
 }

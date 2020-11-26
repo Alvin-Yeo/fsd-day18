@@ -9,13 +9,14 @@
     </div>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4 mb-5" *ngFor="let r of results">
+            <div class="col-md-4 mb-5" *ngFor="let r of results; let i = index">
                 <div class="card">
                     <img src="{{ r.image_url }}" class="card-img-top" alt="{{ r.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ r.title }}</h5>
                         <p class="card-text">{{ r.synopsis.slice(0, 80).concat('...') }}</p>
-                        <a href="{{ r.url }}" target="_blank" class="btn btn-primary">More info</a>
+                        <a href="{{ r.url }}" target="_blank" class="btn btn-primary mr-2">More info</a>
+                        <button class="btn btn-secondary" *ngIf="canShare" (click)="shareThis(i)">Share</button>
                     </div>
                 </div>
             </div>
